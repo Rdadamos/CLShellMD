@@ -52,13 +52,12 @@ geraLinks()
 
 geraPaginaPrincipal()
 {
-	echo "# $pasta1 e $pasta2" > ../CL/cl.md;
-	echo "-----" >> ../CL/cl.md;
-	echo "## $pasta1" >> ../CL/cl.md;
-	geraLista $1 ../CL/cl.md;
-	echo "-----" >> ../CL/cl.md;
-	echo "## $pasta2" >> ../CL/cl.md;
-	geraLista $2 ../CL/cl.md;
+	echo "## $pasta1" > ../CL/$pasta1-e-$pasta2.md;
+	geraLista $1 ../CL/$pasta1-e-$pasta2.md;
+	echo "-----" >> ../CL/$pasta1-e-$pasta2.md;
+	echo "## $pasta2" >> ../CL/$pasta1-e-$pasta2.md;
+	geraLista $2 ../CL/$pasta1-e-$pasta2.md;
+	geraSidebar $1 $2;
 }
 
 geraLista()
@@ -111,6 +110,15 @@ geraListaCL()
 		echo "## $4" >> ../CL/$titulo.md;
 		geraLista $3 ../CL/$titulo.md;
 	done
+}
+
+geraSidebar()
+{
+	echo "* [$pasta1 e $pasta2]($pasta1-e-$pasta2)" > ../CL/_Sidebar.md;
+	echo "## $pasta1" >> ../CL/_Sidebar.md;
+	geraLista $1 ../CL/_Sidebar.md;
+	echo "## $pasta2" >> ../CL/_Sidebar.md;
+	geraLista $2 ../CL/_Sidebar.md;
 }
 
 sed '$d' $1 > cenario;

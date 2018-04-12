@@ -15,7 +15,7 @@
 * Edite somente os arquivos de entrada, execute o script e substitua os arquivos gerados no git
 
 ### O que não fazer
-* Utilizar ; no primeiro campo de cada cenário/léxicos
+* Utilizar ; no primeiro campo de cada cenário/léxico
 * Repetir títulos/nomes
 * Colocar plural ou singular dos nomes dos léxicos em seus sinônimos
 * Repetir nomes dos léxicos em seus sinônimos
