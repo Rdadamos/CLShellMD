@@ -28,7 +28,7 @@ geraCL()
 			IFS=$OIFS2;
 			# ; siginifica quebra de linh (para separar/listar itens), como é tabela em md, <br> é mais prático
 			valor=$(echo $linha | cut -f$count | sed 's/;/<br>/g');
-			echo "**$campo** | $valor " >> $arquivo;
+			echo "$campo | $valor " >> $arquivo;
 			count=$((count+1));
 		done
 	done
@@ -108,17 +108,20 @@ geraListaCL()
 	done
 }
 
-sed -i '$d' $1;
-sed -i '$d' $2;
+sed '$d' $1 > cenario;
+sed '$d' $2 > lexico;
 
-geraCL $1 $pasta1 "Cenário";
-geraCL $2 $pasta2 "Léxico";
-geraLinks $1 $pasta1;
-geraLinks $2 $pasta2;
-geraPaginaPrincipal $1 $2;
-geraSinonimos $2 $pasta2;
+geraCL cenario $pasta1 "Cenário";
+geraCL lexico $pasta2 "Léxico";
+geraLinks cenario $pasta1;
+geraLinks lexico $pasta2;
+geraPaginaPrincipal cenario lexico;
+geraSinonimos lexico $pasta2;
 #deve ser chamado depois do geraLinks e geraSinonimos para não gerar link dentro de link
-geraListaCL $1 $pasta1 $2 $pasta2;
-geraListaCL $2 $pasta2 $1 $pasta1;
+geraListaCL cenario $pasta1 lexico $pasta2;
+geraListaCL lexico $pasta2 cenario $pasta1;
+
+rm cenario;
+rm lexico;
 
 IFS=$OIFS;
