@@ -1,8 +1,8 @@
-#CLShell
+# CLShell
 
-##Cenários e Léxicos
+## Cenários e Léxicos
 
-###O que fazer
+### O que fazer
 * São dois arquivos de entrada, um com todos os cenários e outro com todos os léxicos
 * Primeira linha de cada arquivo deve ser o cabeçalho (ver exemplos)
 * Na última linha deve estar escrito fim (ou qualquer outra coisa)em pelo menos uma das células
@@ -14,13 +14,13 @@
 * Último campo de cada léxico deve conter seus sinônimos (separados por ;)
 * Edite somente os arquivos de entrada, execute o script e substitua os arquivos gerados no git
 
-###O que não fazer
+### O que não fazer
 * Utilizar ; no primeiro campo de cada cenário/léxicos
 * Repetir títulos/nomes
 * Colocar plural ou singular dos nomes dos léxicos em seus sinônimos
 * Repetir nomes dos léxicos em seus sinônimos
 * Alterar na mão os arquivos gerados. Ao executar o script novamente todos os arquivos gerados anteriormente são apagados)
 
-###Exemplos
+### Exemplos
 
-###Instruções de Uso
+### Instruções de Uso
