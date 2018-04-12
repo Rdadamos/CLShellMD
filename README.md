@@ -5,7 +5,6 @@
 ### O que fazer
 * São dois arquivos de entrada, um com todos os cenários e outro com todos os léxicos
 * Primeira linha de cada arquivo deve ser o cabeçalho (ver exemplos)
-* Na última linha deve estar escrito fim (ou qualquer outra coisa)em pelo menos uma das células
 * Os cabeçalhos são usados para criar as tabelas, então os campos são livres
 * Veja modelo no [drive](link)
 * Fazer download como .tsv (Tab-separated values) para usar nesse script
