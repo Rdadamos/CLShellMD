@@ -4,7 +4,7 @@
 
 ### O que fazer
 * São dois arquivos de entrada, um com todos os cenários e outro com todos os léxicos
-* Primeira linha de cada arquivo deve ser o cabeçalho (ver [Exemplo](#Exemplo))
+* Primeira linha de cada arquivo deve ser o cabeçalho (ver [Exemplo](#exemplo))
 * Os cabeçalhos são usados para criar as tabelas, então os campos são livres
 * Veja modelo no [drive](https://docs.google.com/spreadsheets/d/1iN2dwby5QizNvTyToRokk6zpiTHsuqBnQFP9nqBGVTw/edit?usp=sharing)
 * Fazer download como .tsv (Tab-separated values) para usar nesse script
