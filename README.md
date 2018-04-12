@@ -4,7 +4,7 @@
 
 ### O que fazer
 * São dois arquivos de entrada, um com todos os cenários e outro com todos os léxicos
-* Primeira linha de cada arquivo deve ser o cabeçalho (ver exemplos)
+* Primeira linha de cada arquivo deve ser o cabeçalho (ver [Exemplo](#Exemplo))
 * Os cabeçalhos são usados para criar as tabelas, então os campos são livres
 * Veja modelo no [drive](https://docs.google.com/spreadsheets/d/1iN2dwby5QizNvTyToRokk6zpiTHsuqBnQFP9nqBGVTw/edit?usp=sharing)
 * Fazer download como .tsv (Tab-separated values) para usar nesse script
@@ -21,7 +21,7 @@
 * Repetir nomes dos léxicos em seus sinônimos
 * Alterar na mão os arquivos gerados. Ao executar o script novamente todos os arquivos gerados anteriormente são apagados)
 
-### Exemplos
+### Exemplo
 Nome | Noção | Classificação | Impacto(s) | Sinônimo(s)
 --- | --- | --- | --- | ---
 Agenda de shows | Uma programação dos shows que o artista irá realizar | Objeto | O artista posta a agenda de shows para os usuários | Calendario de shows;
