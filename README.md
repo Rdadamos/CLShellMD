@@ -12,6 +12,7 @@
 * Quebras de linhas dentro das células devem ser indicadas com ;
 * Primeiro campo (título/nome) de cada cenário/léxico é utilizado para o nome de cada arquivo.md gerado
 * Último campo de cada léxico deve conter seus sinônimos (separados por ;)
+* Sinônimos devem sempre terminat com ;
 * Edite somente os arquivos de entrada, execute o script e substitua os arquivos gerados no git
 
 ### O que não fazer

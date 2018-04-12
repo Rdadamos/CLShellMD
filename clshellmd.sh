@@ -121,8 +121,8 @@ geraSidebar()
 	geraLista $2 ../CL/_Sidebar.md;
 }
 
-sed '$d' $1 > cenario;
-sed '$d' $2 > lexico;
+cat $1 > cenario;
+cat $2 > lexico;
 
 geraCL cenario "Cenário";
 geraCL lexico "Léxico";
