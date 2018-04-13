@@ -1,8 +1,8 @@
 #/bin/bash
 
 mkdir -p ../CL;
-pasta1="Cenários";
-pasta2="Léxicos";
+cenario="Cenários";
+lexico="Léxicos";
 
 OIFS=$IFS;
 IFS='
@@ -52,11 +52,11 @@ geraLinks()
 
 geraPaginaPrincipal()
 {
-	echo "## $pasta1" > ../CL/$pasta1-e-$pasta2.md;
-	geraLista $1 ../CL/$pasta1-e-$pasta2.md;
-	echo "-----" >> ../CL/$pasta1-e-$pasta2.md;
-	echo "## $pasta2" >> ../CL/$pasta1-e-$pasta2.md;
-	geraLista $2 ../CL/$pasta1-e-$pasta2.md;
+	echo "## $cenario" > ../CL/$cenario-e-$lexico.md;
+	geraLista $1 ../CL/$cenario-e-$lexico.md;
+	echo "-----" >> ../CL/$cenario-e-$lexico.md;
+	echo "## $lexico" >> ../CL/$cenario-e-$lexico.md;
+	geraLista $2 ../CL/$cenario-e-$lexico.md;
 	geraSidebar $1 $2;
 }
 
@@ -88,11 +88,15 @@ geraSinonimos()
 buscaEtroca()
 {
 	# busca em todos os arqs da pasta(-R) CL, de forma case INsensitive(-i) e retornando somente o nome e caminho(-l) do arquivo encontrado
-	# $1 é o nome e caminho do arquivo, $2 é a string a ser buscada e $3 é o nome da pasta para se rusada no caminho do link em md
+	# $1 é o nome e caminho do arquivo e $2 é a string a ser buscada
 	grep -ilR --exclude="$1.md" $2 ../CL/ > temp;
+	############
+	# REMOVER case insensitive
+	# HASH Aqui
+	############
 	for arq in `cat temp`; do
-		# substitui(s) de forma case Insensitive(I) a string buscada em todos as linhas(g) do arquivo
-		sed -i "s/$2/\[&\]\($1\)/Ig" $arq;
+		# substitui(s) de forma case Insensitive(I) a string buscada em todos as linhas(g) do arquivo, exceto na linha 3 (título/nome)
+		sed -i "3!s/$2/\[&\]\($1\)/Ig" $arq;
 	done
 	rm temp;
 }
@@ -114,10 +118,10 @@ geraListaCL()
 
 geraSidebar()
 {
-	echo "* [$pasta1 e $pasta2]($pasta1-e-$pasta2)" > ../CL/_Sidebar.md;
-	echo "## $pasta1" >> ../CL/_Sidebar.md;
+	echo "* [$cenario e $lexico]($cenario-e-$lexico)" > ../CL/_Sidebar.md;
+	echo "## $cenario" >> ../CL/_Sidebar.md;
 	geraLista $1 ../CL/_Sidebar.md;
-	echo "## $pasta2" >> ../CL/_Sidebar.md;
+	echo "## $lexico" >> ../CL/_Sidebar.md;
 	geraLista $2 ../CL/_Sidebar.md;
 }
 
@@ -131,8 +135,8 @@ geraLinks lexico;
 geraPaginaPrincipal cenario lexico;
 geraSinonimos lexico;
 #deve ser chamado depois do geraLinks e geraSinonimos para não gerar link dentro de link
-geraListaCL cenario $pasta1 lexico $pasta2;
-geraListaCL lexico $pasta2 cenario $pasta1;
+geraListaCL cenario $cenario lexico $lexico;
+geraListaCL lexico $lexico cenario $cenario;
 
 rm cenario;
 rm lexico;
