@@ -11,13 +11,13 @@
 * Quebras de linhas dentro das células devem ser indicadas com ;
 * Primeiro campo (título/nome) de cada cenário/léxico é utilizado para o nome de cada arquivo.md gerado
 * Último campo de cada léxico deve conter seus sinônimos (separados por ;)
-* Sinônimos devem sempre terminat com ;
+* Sinônimos devem sempre terminar com ;
 * Edite somente os arquivos de entrada, execute o script e substitua os arquivos gerados no git
+* Para singular ou plural, maiúscula ou minúscula, utilizar os sinônimos (a busca é case sensitive, os links são gerados primeiro para os cenários, depois para os léxicos e por último para os sinônimos, na ordem em que aparecem nos arquivos de entrada)
 
-### O que não fazer
+### O que NÃO fazer
 * Utilizar ; no primeiro campo de cada cenário/léxico
 * Repetir títulos/nomes
-* Colocar plural ou singular dos nomes dos léxicos em seus sinônimos
 * Repetir nomes dos léxicos em seus sinônimos
 * Alterar na mão os arquivos gerados. Ao executar o script novamente todos os arquivos gerados anteriormente são apagados)
 

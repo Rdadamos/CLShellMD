@@ -4,7 +4,9 @@ mkdir -p ../CL;
 cenario="Cenários";
 lexico="Léxicos";
 
+# guarda o Inter Field Separator atual
 OIFS=$IFS;
+# muda o IFS para quebra de linha
 IFS='
 ';
 
@@ -87,18 +89,34 @@ geraSinonimos()
 
 buscaEtroca()
 {
-	# busca em todos os arqs da pasta(-R) CL, de forma case INsensitive(-i) e retornando somente o nome e caminho(-l) do arquivo encontrado
+	numHash=`cksum <<< $2`;
+	echo -e "$numHash\t[$2]($1)" >> links;
+	# busca em todos os arqs da pasta(-R) CL (menos no arquivo do próprio termo buscado) e retornando somente o nome e caminho(-l) do arquivo encontrado
 	# $1 é o nome e caminho do arquivo e $2 é a string a ser buscada
-	grep -ilR --exclude="$1.md" $2 ../CL/ > temp;
-	############
-	# REMOVER case insensitive
-	# HASH Aqui
-	############
+	grep -lR --exclude="$1.md" $2 ../CL/ > temp;
 	for arq in `cat temp`; do
-		# substitui(s) de forma case Insensitive(I) a string buscada em todos as linhas(g) do arquivo, exceto na linha 3 (título/nome)
-		sed -i "3!s/$2/\[&\]\($1\)/Ig" $arq;
+		# substitui(s) a string buscada em todos as ocorrências(g) no arquivo, exceto na linha 3 (título/nome)
+		sed -i "3!s/$2/$numHash/g" $arq;
 	done
 	rm temp;
+}
+
+trocaNumHash()
+{
+	sed 's/\r//g' links | grep -v '\[]' > lista;
+	rm links;
+	for linha in `cat lista`; do
+		numH=`echo $linha | cut -f1`;
+		valor=`echo $linha | cut -f2`;
+		# busca em todos os arqs da pasta(-R) CL e retornando somente o nome e caminho(-l) do arquivo encontrado
+		grep -lR $numH ../CL/ > temp;
+		for arq in `cat temp`; do
+			# substitui(s) a string buscada em todos as ocorrências(g) do arquivo
+			sed -i "3!s/$numH/$valor/g" $arq;
+		done
+		rm temp;
+	done
+	rm lista;
 }
 
 geraListaCL()
@@ -128,17 +146,21 @@ geraSidebar()
 cat $1 > cenario;
 cat $2 > lexico;
 
+#chamada das funcoes
 geraCL cenario "Cenário";
 geraCL lexico "Léxico";
 geraLinks cenario;
 geraLinks lexico;
 geraPaginaPrincipal cenario lexico;
 geraSinonimos lexico;
+trocaNumHash;
 #deve ser chamado depois do geraLinks e geraSinonimos para não gerar link dentro de link
 geraListaCL cenario $cenario lexico $lexico;
 geraListaCL lexico $lexico cenario $cenario;
+###
 
 rm cenario;
 rm lexico;
 
+#devolve o IFS original
 IFS=$OIFS;
